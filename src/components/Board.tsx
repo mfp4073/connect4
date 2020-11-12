@@ -43,6 +43,15 @@ export class BoardComponent extends React.Component<Props> {
     );
   };
 
+  displayGameButton() {
+    // display play again if over, display start over if in progress
+    const buttonColorClass = (this.props.winner) ? "play_again" : "start_over"
+    const buttonLabel = (this.props.winner) ? "Play Again" : "Start Over"
+
+    return <button className={buttonColorClass}>{buttonLabel}</button>
+  }
+
+
   render() {
     const classes = cn("Game-Board");
 
@@ -53,6 +62,8 @@ export class BoardComponent extends React.Component<Props> {
         <div className="Game">
           <div className={classes}>{this.props.board.map(this.displayRow)}</div>
         </div>
+
+        {this.displayGameButton()}
       </>
     );
   }
